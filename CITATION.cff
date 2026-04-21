@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: "UME: Unified Multi-caller Ensemble"
+message: "If you use this software, please cite the manuscript and the archived software release."
+type: software
+authors:
+  - family-names: Vallebueno
+    given-names: Miguel
+repository-code: "https://github.com/Vallebueno/Caronte"
+abstract: "UME is a variant-calling integration framework for heterogeneous sequencing datasets that combines multiple callers and projects discovery sites into production samples."
+keywords:
+  - variant calling
+  - ensemble calling
+  - genomics
+  - sequencing
+  - pipeline
+license: BSD-3-Clause
+version: 0.1.0
+date-released: 2026-04-21

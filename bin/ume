@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ENGINE="${ROOT_DIR}/code/UMCAL/src/UME_RCALL_V2.1.sh"
+
+show_help() {
+cat <<EOF
+UME wrapper
+
+Usage:
+  ume <mode> [mode arguments]
+  ume --help
+
+Modes:
+  clist       Build caller metadata and empirical lookup tables
+  discovery   Build the discovery .ll site list
+  production  Project the discovery .ll into production samples
+
+Examples:
+  ume clist -f /path/to/All.tlone.Merge.db.gz -k /path/to/files.mergein.lst -r /path/to/ref.fa.OL
+  ume discovery -f /path/to/All.tlone.Merge.db.gz -k /path/to/files.mergein.lst -c 1 -l 5 -r /path/to/ref.fa.OL
+  ume production -f /path/to/in_prod_mpileup_files.lst -i /path/to/mpileup_dir -k /path/to/discovery.ll -r /path/to/ref.fa.OL -d /path/to/output
+
+Underlying engine:
+  ${ENGINE}
+EOF
+}
+
+if [ $# -eq 0 ]; then
+    show_help
+    exit 1
+fi
+
+case "${1}" in
+    --help|-h|help)
+        show_help
+        exit 0
+        ;;
+    clist|discovery|production|merge)
+        mode="$1"
+        shift
+        exec bash "${ENGINE}" -x "${mode}" "$@"
+        ;;
+    *)
+        echo "Unknown mode: <$1>" 1>&2
+        show_help
+        exit 1
+        ;;
+esac
