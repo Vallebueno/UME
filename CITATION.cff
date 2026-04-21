@@ -1,18 +1,31 @@
 cff-version: 1.2.0
-title: "UME: Unified Multi-caller Ensemble"
-message: "If you use this software, please cite the manuscript and the archived software release."
+title: "Unified Multi-caller Ensemble (UME)"
+message: "If you use this software, please cite it using the metadata below."
 type: software
 authors:
-  - family-names: Vallebueno
-    given-names: Miguel
-repository-code: "https://github.com/Vallebueno/Caronte"
-abstract: "UME is a variant-calling integration framework for heterogeneous sequencing datasets that combines multiple callers and projects discovery sites into production samples."
+  - family-names: "Vallebueno"
+    given-names: "Miguel"
+    affiliation: "SLU"
+version: "0.1.0"
+date-released: 2026-04-21
+repository-code: "https://github.com/Vallebueno/UME"
 keywords:
   - variant calling
-  - ensemble calling
   - genomics
-  - sequencing
-  - pipeline
+  - population genetics
+  - maize
+  - bioinformatics
+  - SNP discovery
 license: BSD-3-Clause
-version: 0.1.0
-date-released: 2026-04-21
+abstract: >
+  UME (Unified Multi-caller Ensemble) is a population-agnostic variant calling
+  framework that integrates multiple variant callers to reduce coverage bias
+  and improve variant discovery in heterogeneous sequencing datasets.
+references:
+  - type: article
+    title: "Unified Multi-caller Ensemble (UME) generates an unbiased maize haplotype map for variable coverage whole genome data"
+    authors:
+      - family-names: "Vallebueno"
+        given-names: "Miguel"
+    year: 2026
+    journal: "Molecular Ecology Resources"
