@@ -71,10 +71,6 @@ Optional HPC requirements:
 - `sbatch` for SLURM execution
 - `ml`/environment modules when available
 
-Optional external helper modules:
-
-- `Modules/VCF/VCF_RANDOM_SAMPLE.pl`
-- `Modules/Tassel/TasselTRG_D_Matrix_downsample_HETS.sh`
 
 The core active workflow can now run without those optional helpers, but some
 downstream convenience outputs will be skipped.
