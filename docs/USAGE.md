@@ -1,14 +1,8 @@
 # UME Usage Guide
 
-This document focuses on the active workflow:
-
-- `clist`
-- `discovery`
-- `production`
-
-The recommended entry point is:
-
-- [bin/ume](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\bin\ume)
+This guide documents the active public workflow around
+[`bin/ume`](../bin/ume) and
+[`code/UMCAL/src/UME_RCALL_V2.1.sh`](../code/UMCAL/src/UME_RCALL_V2.1.sh).
 
 ## Workflow summary
 
@@ -17,10 +11,10 @@ The recommended entry point is:
 Purpose:
 
 - derive caller metadata from the source list
-- create helper files for future merge steps
+- create helper files for later merge steps
 - estimate empirical caller-specific quality distributions
 
-Typical command:
+Command:
 
 ```bash
 bin/ume clist \
@@ -29,7 +23,7 @@ bin/ume clist \
   -r /path/to/reference.fa.OL
 ```
 
-Key outputs:
+Outputs:
 
 - `<list>.Disc.lst`
 - `<list>.tlone`
@@ -40,11 +34,11 @@ Key outputs:
 
 Purpose:
 
-- combine evidence from callers
-- threshold known positions
+- combine evidence across callers
+- apply the phred cutoff
 - produce the final discovery `.ll`
 
-Typical command:
+Command:
 
 ```bash
 bin/ume discovery \
@@ -55,18 +49,22 @@ bin/ume discovery \
   -r /path/to/reference.fa.OL
 ```
 
-Key scientific output:
+Outputs:
 
-- discovery `.ll`
+- `<merged_db>.qual0.Union.max.dbx`
+- `<merged_db>.qual0.Union.max.dbx.cof<cutoff>.lst`
+- `<merged_db>.qual0.Union.max.dbx.cof<cutoff>.lst2` when GBS enrichment is enabled
+- final discovery `.ll`
 
 ### 3. `production`
 
 Purpose:
 
-- use the discovery `.ll` to project/call all production samples
-- merge all sample columns into a final multi-sample output
+- project the discovery `.ll` into production samples
+- write one temporary genotype column per sample
+- merge those columns into the final multi-sample production output
 
-Typical command:
+Command:
 
 ```bash
 bin/ume production \
@@ -77,35 +75,49 @@ bin/ume production \
   -d /path/to/output_dir
 ```
 
-Key helper artifacts:
+Outputs:
 
-- `<keyfile>.tlone`
-- `<keyfile>.hh`
+- one `*.tmpt.gz` file per production sample
+- merged production VCF-like output in the output directory
 
-These are created automatically if missing.
-
-## Expected file roles
+## File roles
 
 - `.ll`
-  Discovery site-definition product used scientifically by `production`.
+  Discovery site-definition product used by `production`.
 - `.tlone`
-  Shell recipe used to merge many sample columns.
+  Merge recipe used to combine all per-sample columns.
 - `.hh`
-  VCF-like header used during final assembly.
+  Header file used during final output assembly.
 
-## SLURM vs local execution
+## Environment variables
 
-To run locally:
+- `UME_SRC_DIR`
+  Overrides the engine source directory.
+- `UME_USE_SLURM`
+  Set to `0` to force local sequential execution.
+- `UME_GBS_SUMMARY`
+  Optional path to the summary table used for discovery enrichment. If unset,
+  discovery continues without the optional enrichment step.
+- `UME_REPO_ROOT`
+  Optional repository root containing `Modules/` for extra postprocessing.
+- `UME_SUM_PVAL_TABLE`
+  Required only if the discovery aggregation mode is changed to `sum`.
+- `UME_PRODUCTION_PREFIX`
+  Prefix for merged production output names.
+
+## Local vs SLURM execution
+
+To force local execution:
 
 ```bash
 export UME_USE_SLURM=0
 ```
 
-To run with SLURM:
+To allow SLURM execution when `sbatch` is available:
 
 ```bash
 export UME_USE_SLURM=1
 ```
 
-The active workflow will use `sbatch` when it is available and SLURM is not
-disabled.
+The workflow automatically falls back to local execution if `sbatch` is not
+available.

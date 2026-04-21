@@ -193,9 +193,13 @@ if [  "${x}" == "discovery" ] ; then
   echo "Done!!!"
 
 
-  echo "UME enriching DB with known GBS diversity..."
+  if [ -n "${UME_GBS_SUMMARY:-}" ] && [ -f "${UME_GBS_SUMMARY}" ]; then
+    echo "UME enriching DB with known GBS diversity..."
     perl "$srcDIR/Discovery/Discovery_enrichList_GBS.pl" "${KNOWN_LIST}" "${c}"
-  echo "Done!!!"
+    echo "Done!!!"
+  else
+    echo "UME skipping optional GBS enrichment because UME_GBS_SUMMARY is not set to a readable file"
+  fi
 
   if [ ! -f "${ALT_INPUT}" ]; then
       ALT_INPUT="${KNOWN_LIST}"

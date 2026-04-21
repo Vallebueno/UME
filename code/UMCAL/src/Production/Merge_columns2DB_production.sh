@@ -3,18 +3,12 @@
 # Author: Miguel Vallebueno,
 # Date: 2021-02-22
 
-############  Designed to run with C1 Nodes as they have High clock speeds
-
-
-# === SLURM Config === for C1 Nodes(hi-clock speed),  qos short(hi-priority)
-
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH -p c                 #Node type(c1,c2,m2)
+#SBATCH -p c
 #SBATCH --cpus-per-task=20
 #SBATCH --mem=10G
 #SBATCH --qos=long
-#SBATCH --constraint=c1
 #SBATCH --array=1-1
 
 set -euo pipefail
@@ -25,13 +19,9 @@ if command -v ml >/dev/null 2>&1; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CODE_ROOT="${UME_CARONTE_ROOT:-$(cd "${SCRIPT_DIR}/../../.." && pwd)}"
+CODE_ROOT="${UME_REPO_ROOT:-${UME_CARONTE_ROOT:-$(cd "${SCRIPT_DIR}/../../.." && pwd)}}"
 TASK_ID="${SLURM_ARRAY_TASK_ID:-${UME_TASK_ID:-1}}"
 MERGE_PREFIX="${UME_PRODUCTION_PREFIX:-MaizeDB_UME}"
-# === INSTRUCTIONS ===
-#KEY=/scratch-cbe/users/miguel.vallebueno/ALL/prt.tmp.lst.tl
-#KEY=/scratch-cbe/users/miguel.vallebueno/ALL2/vcf_tmptx.lst.tlone
-#KEY=/groups/swarts/lab/MAVE/Experiments/Hydra_coverage/files.mergein.lst.
 F=$1
 KEY=${F}.tlone
 HeadGz=${F}.hh.gz

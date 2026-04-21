@@ -2,17 +2,13 @@
 # Author: Miguel Vallebueno
 # Date: 2022-07-29
 
-#$filen=$ARGV[0];
-#$chr=$ARGV[1];
-#$cof=$ARGV[2];
-#$alg=$ARGV[3];
-#$qualf=$ARGV[4];
-#$file="$filen.$chr.poli.qual$qualf.Union.V8.$alg.dbx.cof$cof.lst";
-#$file =~ s/.db.gz//g;
-#$file = $filen;
 $file=$ARGV[0];
 $chr=$ARGV[1];
-$GBSf=$ENV{'UME_GBS_SUMMARY'} || "/groups/swarts/lab/MAVE/MAIZEDB/GBS_Kriztinan_filt_summary.txt";
+$GBSf=$ENV{'UME_GBS_SUMMARY'} || "";
+
+if($GBSf eq ""){
+    die "UME_GBS_SUMMARY must be set to enable discovery enrichment\n";
+}
 
 $out=$file;
 $out =~ s/.lst/.lst2/g;

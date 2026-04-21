@@ -1,10 +1,8 @@
-# UME makes the production call from mpileups generating one column files guided by the Discovery list file. need to be joined afterwise into vcf
+# UME makes the production call from mpileups generating one column files
+# guided by the discovery .ll file. The resulting per-sample columns are merged
+# later into the final multi-sample production output.
 # Author: Miguel Vallebueno
 # Date: 2023-01-10
-
-#$ref="/groups/swarts/lab/Resources/ReferenceGenomes/Zm-B73-REFERENCE-NAM-5.0.fa.OL";
-#$file="/scratch-cbe/users/miguel.vallebueno/mpilp2db/SM8_NoUDG_Vallebueno_SM8_mappedAGPv5.sorted.MarkedDup.bam.ALL.mpileup.gz";
-#$list="file.ll";
 
 $IDIR=$ARGV[0];
 $filen=$ARGV[1];
@@ -205,7 +203,7 @@ open(LST,"$list") or die;
 print "writing sites...\n";
 $out="$Odir/$filen.tmpt";
 #open (OUT, ">$out");
-open (my $gout_fh, "| /bin/gzip -c > $out.gz") or die;
+open (my $gout_fh, "| gzip -c > $out.gz") or die;
 while($line=<LST>) {
     chomp($line);
     @lcol = split(/\t/, $line);

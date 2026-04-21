@@ -1,11 +1,6 @@
 # UME Union Discovery
 # Author: Miguel Vallebueno
 # Date: 2022-07-29
-
-#for i in {max,min,median,mean,sum}; do echo $i; time perl $caronte/Modules/VCF/DB_Union_V8_FAST.pl $i TESTER_alg.dv ; done
-
-
-
 $filen=$ARGV[0];
 $chr=$ARGV[1];
 $file="$filen";
@@ -93,7 +88,10 @@ print "Done!\n";
 
 if ($alg eq "sum") {
     print "Loading norm SUM lookup table...\n";
-    $fsum = $ENV{'UME_SUM_PVAL_TABLE'} || "/groups/swarts/lab/MAVE/phred/Emp_Dist_sum.txt.pval2f";
+    $fsum = $ENV{'UME_SUM_PVAL_TABLE'} || "";
+    if ($fsum eq "") {
+        die "UME_SUM_PVAL_TABLE must be set when using the sum aggregation mode\n";
+    }
     open(EXP, "$fsum") or die;
     while ($line = <EXP>) {
         chomp($line);

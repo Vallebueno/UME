@@ -1,5 +1,3 @@
-#$list="/groups/swarts/lab/Resources/Maize/WGS/gVCFS/ALL/files.mergein.lst.Disc.in";
-#$file="/scratch-cbe/users/miguel.vallebueno/MERGE/All.tlone.Merge.db.10.poli.db.gz";
 $list=$ARGV[0];
 $file=$ARGV[1];
 

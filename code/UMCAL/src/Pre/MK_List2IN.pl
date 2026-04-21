@@ -1,4 +1,3 @@
-#$lst="/groups/swarts/lab/Resources/Maize/WGS/gVCFS/ALL/files.mergein.lst";
 $lst=$ARGV[0];
 
 open(OUT,">$lst.Disc.lst") or die;
