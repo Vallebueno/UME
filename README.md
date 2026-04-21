@@ -14,17 +14,17 @@ documentation.
 
 ## Repository layout
 
-- [bin](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\bin)
+- [bin]
   Public entry points and convenience wrappers.
-- [code/UMCAL](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\code\UMCAL)
+- [code/UMCAL]
   Active UME engine and legacy source tree.
-- [config](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\config)
+- [config]
   Example environment/configuration files.
-- [docs](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\docs)
+- [docs]
   Detailed usage, workflow, and publication notes.
-- [examples](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\examples)
+- [examples]
   Small toy inputs showing expected file structure and command usage.
-- [tests](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\tests)
+- [tests]
   Lightweight smoke tests and validation helpers.
 
 ## What UME does
@@ -51,11 +51,11 @@ assembly of the final production output.
 
 The recommended user-facing entry point is:
 
-- [bin/ume](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\bin\ume)
+- [bin/ume]
 
 This wrapper delegates to:
 
-- [code/UMCAL/src/UME_RCALL_V2.1.sh](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\code\UMCAL\src\UME_RCALL_V2.1.sh)
+- [code/UMCAL/src/UME_RCALL_V2.1.sh]
 
 ## Software requirements
 
@@ -82,7 +82,7 @@ UME currently uses a lightweight installation model:
 1. Clone the repository.
 2. Ensure `bash`, `perl`, and `gzip` are available.
 3. Copy and edit:
-   - [config/ume.env.example](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\config\ume.env.example)
+   - [config/ume.env.example]
 4. Source your environment file before running UME.
 
 Example:
@@ -100,15 +100,15 @@ bin/ume --help
 
 See:
 
-- [docs/USAGE.md](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\docs\USAGE.md)
-- [examples/toy-workflow](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\examples\toy-workflow)
+- [docs/USAGE.md]
+- [examples/toy-workflow]
 
 ## Inputs and outputs
 
 Expected inputs and outputs for the active pipeline are documented in:
 
-- [docs/USAGE.md](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\docs\USAGE.md)
-- [code/UMCAL/README.md](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\code\UMCAL\README.md)
+- [docs/USAGE.md]
+- [code/UMCAL/README.md]
 
 ## Computational notes
 
@@ -123,36 +123,13 @@ Expected inputs and outputs for the active pipeline are documented in:
 
 Citation metadata for software release is provided in:
 
-- [CITATION.cff](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\CITATION.cff)
+- [CITATION.cff]
 
 If you use UME in academic work, please cite:
 
 1. The manuscript describing UME.
 2. The archived software release associated with the repository DOI.
 
-## Versioning and release
-
-This repository is being prepared for an initial stable public release.
-
-Recommended first release tag:
-
-- `v0.1.0`
-
-Rationale:
-
-- first cleaned and publication-ready public release
-- suitable for Zenodo archiving
-- semantically indicates a stable but early public version
-
-See also:
-
-- [CHANGELOG.md](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\CHANGELOG.md)
-
-## License
-
-This repository includes:
-
-- [LICENSE](D:\MV_Postdoc_GMI_KS\UME_MER_REPO\Caronte\LICENSE)
 
 ## Current status
 
